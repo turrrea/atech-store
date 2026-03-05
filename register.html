@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>ATech | Înregistrare</title>
+    <style>
+        body { font-family: sans-serif; background: #2c3e50; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .form-box { background: white; padding: 30px; border-radius: 10px; width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .btn-reg { background: #3498db; color: white; border: none; width: 100%; padding: 10px; cursor: pointer; border-radius: 5px; }
+        .back { display: block; text-align: center; margin-top: 15px; font-size: 0.8rem; color: #666; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="form-box">
+    <h2 style="text-align:center">Cont Nou ATech</h2>
+    <form onsubmit="event.preventDefault(); alert('Cont creat cu succes (simulat)!');">
+        <input type="text" placeholder="Nume Complet" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Parolă" required>
+        <button type="submit" class="btn-reg">Creează Cont</button>
+    </form>
+    <a href="index.html" class="back">Înapoi la site</a>
+</div>
+
+</body>
+</html>

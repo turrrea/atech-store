@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATech | Înregistrare Cont</title>
+    <style>
+        :root {
+            --main-blue: #3498db;
+            --dark-bg: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            color: white;
+        }
+
+        /* Containerul Formularului */
+        .register-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px); /* Efect de sticlă mată */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            width: 350px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .register-card h2 { margin-bottom: 30px; font-size: 28px; }
+        .register-card h2 span { color: var(--main-blue); }
+
+        /* Stil pentru câmpurile de input */
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 5px; font-size: 14px; color: #bbb; }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus { background: rgba(255, 255, 255, 0.15); box-shadow: 0 0 8px var(--main-blue); }
+
+        /* Butonul principal */
+        .btn-register {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: var(--main-blue);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-register:hover { background: #2980b9; transform: translateY(-2px); }
+
+        /* Link înapoi */
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .back-link:hover { color: white; }
+
+        /* Mesaj succes animat */
+        #success-msg {
+            display: none;
+            color: #2ecc71;
+            margin-top: 20px;
+            font-weight: bold;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="register-card">
+    <h2>A<span>Tech</span> Join</h2>
+    <form id="regForm" onsubmit="handleRegister(event)">
+        <div class="input-group">
+            <label>Nume complet</label>
+            <input type="text" id="userName" placeholder="Ex: Andrei Popescu" required>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="userEmail" placeholder="nume@exemplu.com" required>
+        </div>
+
+        <div class="input-group">
+            <label>Parolă</label>
+            <input type="password" id="userPass" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-register">Creează Cont</button>
+    </form>
+
+    <div id="success-msg"></div>
+
+    <a href="index.html" class="back-link">← Înapoi la magazin</a>
+</div>
+
+<script>
+    function handleRegister(event) {
+        event.preventDefault(); // Oprește reîncărcarea paginii
+
+        const nume = document.getElementById('userName').value;
+        const msgDiv = document.getElementById('success-msg');
+        const form = document.getElementById('regForm');
+
+        // Simulăm procesarea
+        msgDiv.style.display = "block";
+        msgDiv.innerHTML = "Se procesează...";
+
+        setTimeout(() => {
+            form.style.display = "none";
+            msgDiv.innerHTML = "✔ Bun venit în echipa ATech, " + nume + "!<br><small>Vei fi redirecționat către magazin...</small>";
+            
+            // Redirecționare automată după 3 secunde
+            setTimeout(() => {
+                window.location.href = "produse.html";
+            }, 3000);
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>

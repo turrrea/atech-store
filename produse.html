@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATech | Catalog Complet</title>
+    <style>
+        /* --- CONFIGURARE CULORI --- */
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --header-bg: #1a1a1a;
+            --main-blue: #3498db;
+            --card-border: #eee;
+        }
+
+        .dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --header-bg: #000;
+            --card-border: #333;
+        }
+
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            transition: 0.3s;
+        }
+
+        /* --- HEADER --- */
+        header { 
+            background: var(--header-bg); 
+            padding: 15px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: white; 
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .logo { font-size: 26px; font-weight: bold; color: var(--main-blue); text-decoration: none; }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .fav-counter { background: #e74c3c; color: white; padding: 2px 8px; border-radius: 10px; font-size: 14px; font-weight: bold; }
+
+        /* --- FILTRE --- */
+        .filter-section {
+            max-width: 1200px; margin: 20px auto; padding: 15px;
+            background: var(--card-bg); border-radius: 10px;
+            display: flex; gap: 15px; flex-wrap: wrap; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        select { padding: 8px; border-radius: 5px; border: 1px solid #ddd; background: white; cursor: pointer; }
+
+        /* --- GRID PRODUSE --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+        }
+
+        /* --- CARD PRODUS --- */
+        .card { 
+            background: var(--card-bg); border-radius: 15px; overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s;
+            display: flex; flex-direction: column; border: 1px solid var(--card-border); 
+            position: relative;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        /* BUTON FAVORITE */
+        .wishlist-btn {
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(255,255,255,0.8); border: none; border-radius: 50%;
+            width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 20px; color: #ccc; transition: 0.3s; z-index: 10;
+        }
+        .wishlist-btn.active { color: #e74c3c; background: white; box-shadow: 0 0 10px rgba(231,76,60,0.3); }
+
+        .img-box { height: 250px; background: white; padding: 20px; display: flex; align-items: center; justify-content: center; }
+        .img-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+        .info { padding: 20px; text-align: center; }
+        .info h3 { margin: 10px 0; font-size: 1.2rem; }
+        .price { font-size: 1.4rem; color: #27ae60; font-weight: bold; margin-bottom: 15px; }
+        
+        .btn-buy { 
+            background: var(--main-blue); color: white; border: none; 
+            padding: 10px; border-radius: 5px; width: 100%; cursor: pointer; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">A<span>Tech</span></a>
+    <div class="nav-right">
+        <span>❤ Favorite: <span id="favCount" class="fav-counter">0</span></span>
+        <button onclick="document.body.classList.toggle('dark-mode')" style="cursor:pointer; background:none; border:1px solid white; color:white; padding:5px 10px; border-radius:5px;">🌓 Mod</button>
+    </div>
+</header>
+
+<div class="filter-section">
+    <strong>Sortează:</strong>
+    <select id="brandFilter" onchange="aplicăFiltre()">
+        <option value="all">Toate Mărcile</option>
+        <option value="Apple">Apple</option>
+        <option value="Samsung">Samsung</option>
+        <option value="Xiaomi">Xiaomi</option>
+    </select>
+
+    <select id="priceSort" onchange="sorteazăPret()">
+        <option value="default">După preț</option>
+        <option value="asc">Crescător</option>
+        <option value="desc">Descrescător</option>
+    </select>
+</div>
+
+<div class="container">
+    <div class="products-grid" id="gridProduse">
+        
+        <div class="card" data-brand="Apple" data-price="5900">
+            <button class="wishlist-btn" onclick="toggleFavorite(this)">❤</button>
+            <div class="img-box"><img src="iphone16.jpg" alt="iPhone 16 Pro"></div>
+            <div class="info">
+                <h3>iPhone 16 Pro</h3>
+                <p class="price">5900 RON</p>
+                <button class="btn-buy" onclick="alert('Adăugat în coș!')">Cumpără</button>
+            </div>
+        </div>
+
+        <div class="card" data-brand="Apple" data-price="6800">
+            <button class="wishlist-btn" onclick="toggleFavorite(this)">❤</button>
+            <div class="img-box"><img src="iphone17.jpg" alt="iPhone 17 Pro"></div>
+            <div class="info">
+                <h3>iPhone 17 Pro</h3>
+                <p class="price">6800 RON</p>
+                <button class="btn-buy" onclick="alert('Adăugat în coș!')">Cumpără</button>
+            </div>
+        </div>
+
+        <div class="card" data-brand="Samsung" data-price="8500">
+            <button class="wishlist-btn" onclick="toggleFavorite(this)">❤</button>
+            <div class="img-box"><img src="fold7.jpg" alt="Fold 7"></div>
+            <div class="info">
+                <h3>Galaxy Z Fold 7</h3>
+                <p class="price">8500 RON</p>
+                <button class="btn-buy" onclick="alert('Adăugat în coș!')">Cumpără</button>
+            </div>
+        </div>
+
+        <div class="card" data-brand="Samsung" data-price="6400">
+            <button class="wishlist-btn" onclick="toggleFavorite(this)">❤</button>
+            <div class="img-box"><img src="s25.jpg" alt="S25 Ultra"></div>
+            <div class="info">
+                <h3>Galaxy S25 Ultra</h3>
+                <p class="price">6400 RON</p>
+                <button class="btn-buy" onclick="alert('Adăugat în coș!')">Cumpără</button>
+            </div>
+        </div>
+
+        <div class="card" data-brand="Xiaomi" data-price="5200">
+            <button class="wishlist-btn" onclick="toggleFavorite(this)">❤</button>
+            <div class="img-box"><img src="xiaomi14.jpg" alt="Xiaomi 14"></div>
+            <div class="info">
+                <h3>Xiaomi 14 Ultra</h3>
+                <p class="price">5200 RON</p>
+                <button class="btn-buy" onclick="alert('Adăugat în coș!')">Cumpără</button>
+            </div>
+        </div>
+
+        <div class="card" data-brand="Xiaomi" data-price="1800">
+            <button class="wishlist-btn" onclick="toggleFavorite(this)">❤</button>
+            <div class="img-box"><img src="redmi13.jpg" alt="Redmi 13"></div>
+            <div class="info">
+                <h3>Redmi Note 13 Pro</h3>
+                <p class="price">1800 RON</p>
+                <button class="btn-buy" onclick="alert('Adăugat în coș!')">Cumpără</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let favoriteCount = 0;
+
+    // Funcție Inimioară
+    function toggleFavorite(btn) {
+        btn.classList.toggle('active');
+        const counter = document.getElementById('favCount');
+        if (btn.classList.contains('active')) {
+            favoriteCount++;
+        } else {
+            favoriteCount--;
+        }
+        counter.innerText = favoriteCount;
+    }
+
+    // Funcție Filtrare Brand
+    function aplicăFiltre() {
+        const brand = document.getElementById('brandFilter').value;
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            const matchBrand = (brand === 'all' || card.getAttribute('data-brand') === brand);
+            card.style.display = matchBrand ? 'flex' : 'none';
+        });
+    }
+
+    // Funcție Sortare Preț
+    function sorteazăPret() {
+        const grid = document.getElementById('gridProduse');
+        const cards = Array.from(grid.getElementsByClassName('card'));
+        const order = document.getElementById('priceSort').value;
+
+        if (order === 'default') return;
+
+        cards.sort((a, b) => {
+            const pA = parseInt(a.getAttribute('data-price'));
+            const pB = parseInt(b.getAttribute('data-price'));
+            return order === 'asc' ? pA - pB : pB - pA;
+        });
+
+        grid.innerHTML = "";
+        cards.forEach(c => grid.appendChild(c));
+    }
+</script>
+
+</body>
+</html>

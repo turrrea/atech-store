@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATech | Telefoane de ultimă generație</title>
+    <style>
+        /* Aici adăugăm "vopseaua" (CSS) */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f9; }
+        header { background-color: #1a1a1a; color: white; padding: 1rem; text-align: center; }
+        
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        
+        /* Designul pentru un telefon (Card) */
+        .phone-card {
+            background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 15px; padding: 20px; width: 250px; text-align: center;
+            transition: transform 0.3s;
+        }
+        .phone-card:hover { transform: scale(1.05); }
+        .phone-card img { max-width: 100%; border-radius: 5px; }
+        .price { color: #27ae60; font-weight: bold; font-size: 1.2rem; }
+        
+        button {
+            background-color: #007bff; color: white; border: none;
+            padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;
+        }
+        button:hover { background-color: #0056b3; }
+        
+        footer { text-align: center; padding: 20px; background: #1a1a1a; color: white; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ATech Store</h1>
+    <p>Tehnologia viitorului, astăzi.</p>
+</header>
+
+<div class="container">
+    <div class="phone-card">
+        <img src="https://via.placeholder.com/200x300?text=ATech+Pro" alt="Telefon ATech">
+        <h3>ATech Pro Max</h3>
+        <p>Ecran OLED 6.7 inch, 5G</p>
+        <p class="price">4.500 RON</p>
+        <button onclick="cumpara('ATech Pro Max')">Adaugă în coș</button>
+    </div>
+
+    <div class="phone-card">
+        <img src="https://via.placeholder.com/200x300?text=ATech+Air" alt="Telefon ATech">
+        <h3>ATech Air</h3>
+        <p>Ultra subțire, baterie 2 zile</p>
+        <p class="price">3.200 RON</p>
+        <button onclick="cumpara('ATech Air')">Adaugă în coș</button>
+    </div>
+
+    <div class="phone-card">
+        <img src="https://via.placeholder.com/200x300?text=ATech+Lite" alt="Telefon ATech">
+        <h3>ATech Lite</h3>
+        <p>Performanță la preț accesibil</p>
+        <p class="price">1.800 RON</p>
+        <button onclick="cumpara('ATech Lite')">Adaugă în coș</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 ATech Romania. Toate drepturile rezervate.</p>
+</footer>
+
+<script>
+    function cumpara(nume) {
+        alert("Ai adăugat " + nume + " în coșul de cumpărături!");
+    }
+</script>
+
+</body>
+</html>
