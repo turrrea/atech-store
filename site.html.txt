@@ -3,31 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATech | Telefoane de ultimă generație</title>
+    <title>ATech | Telefoane de ultimă generație (Laborator 2)</title>
     <style>
-        /* Aici adăugăm "vopseaua" (CSS) */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f9; }
-        header { background-color: #1a1a1a; color: white; padding: 1rem; text-align: center; }
+        /* CSS REZOLVARE SARCINA: Stilurile globale și structura */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            background-color: #f4f4f9; 
+        }
         
-        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        header { 
+            background-color: #1a1a1a; 
+            color: white; 
+            padding: 20px 10px 10px 10px; 
+            text-align: center; 
+        }
+
+        /* ------------------------------------------------------------------ */
+        /* CERINȚA: STRUCTURA PENTRU CUPRINS / MENIU VIZUAL (Cea mai importantă parte) */
+        .meniu-cuprins {
+            background-color: #222222;
+            padding: 12px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* CERINȚA: PSEUDO-CLASE PENTRU LINK-URI (Ce a cerut profesorul) */
         
-        /* Designul pentru un telefon (Card) */
+        /* 1. Cum arată link-ul la început (Starea inițială) */
+        .meniu-cuprins a:link { 
+            color: #007bff; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s, border-bottom 0.3s; /* Tranziție lină */
+        }
+
+        /* 2. Cum arată după ce ai dat deja click pe el (Vizitat) */
+        .meniu-cuprins a:visited { 
+            color: #007bff; /* Păstrăm culoarea albastră ca să arate curat */
+        }
+
+        /* 3. HOVER - Ce se întâmplă când pui mouse-ul pe el (Se face roșu și apare sublinere) */
+        .meniu-cuprins a:hover { 
+            color: #ff4d4d; 
+            border-bottom: 2px solid #ff4d4d;
+        }
+
+        /* 4. ACTIVE - Ce culoare are în secunda exactă când apeși click pe el */
+        .meniu-cuprins a:active { 
+            color: #27ae60; 
+        }
+        /* ------------------------------------------------------------------ */
+
+        /* Structura pentru cardurile de produse */
+        .container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        
+        /* SARCINA SUPLIMENTARĂ: Efecte vizuale la carduri (Le aveai deja, sunt perfecte!) */
         .phone-card {
-            background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin: 15px; padding: 20px; width: 250px; text-align: center;
+            background: white; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 15px; 
+            padding: 20px; 
+            width: 250px; 
+            text-align: center;
             transition: transform 0.3s;
         }
-        .phone-card:hover { transform: scale(1.05); }
-        .phone-card img { max-width: 100%; border-radius: 5px; }
-        .price { color: #27ae60; font-weight: bold; font-size: 1.2rem; }
         
-        button {
-            background-color: #007bff; color: white; border: none;
-            padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;
+        /* Efectul de mărire la hover (Sarcina suplimentară) */
+        .phone-card:hover { 
+            transform: scale(1.05); 
         }
-        button:hover { background-color: #0056b3; }
         
-        footer { text-align: center; padding: 20px; background: #1a1a1a; color: white; margin-top: 20px; }
+        .phone-card img { 
+            max-width: 100%; 
+            border-radius: 5px; 
+        }
+        
+        .price { 
+            color: #27ae60; 
+            font-weight: bold; 
+            font-size: 1.2rem; 
+        }
+        
+        /* Butoanele și efectul lor de hover */
+        button {
+            background-color: #007bff; 
+            color: white; 
+            border: none;
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        button:hover { 
+            background-color: #0056b3; 
+        }
+        
+        footer { 
+            text-align: center; 
+            padding: 20px; 
+            background: #1a1a1a; 
+            color: white; 
+            margin-top: 20px; 
+        }
     </style>
 </head>
 <body>
@@ -37,7 +124,13 @@
     <p>Tehnologia viitorului, astăzi.</p>
 </header>
 
-<div class="container">
+<nav class="meniu-cuprins">
+    <a href="#home">Home</a>
+    <a href="#produse">Produse</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="container" id="produse">
     <div class="phone-card">
         <img src="https://via.placeholder.com/200x300?text=ATech+Pro" alt="Telefon ATech">
         <h3>ATech Pro Max</h3>
@@ -64,7 +157,7 @@
 </div>
 
 <footer>
-    <p>&copy; 2026 ATech Romania. Toate drepturile rezervate.</p>
+    <p>&copy; 2026 ATech Romania. Proiect structurat pentru Laboratorul 2 (CSS).</p>
 </footer>
 
 <script>
